@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { ReferralsModel } from "./referrals.model";
 import { CreateReferralDto } from "./dto/create-referral.dto";
@@ -16,12 +16,18 @@ export class ReferralsService {
 
   async getReferralByParent(req: number) {
     const referral = await this.referralRepository.findAll({where: { parent_user_id: req}})
-    return referral
+    if (referral) {
+      return referral
+    }
+    throw new HttpException('Реферал не найден', HttpStatus.NOT_FOUND)
   }
 
   async getReferralByChild(req: number) {
     const referral = await this.referralRepository.findAll({where: { child_user_id: req}})
-    return referral
+    if (referral) {
+      return referral
+    }
+    throw new HttpException('Реферал не найден', HttpStatus.NOT_FOUND)
   }
 
   async getAll() {

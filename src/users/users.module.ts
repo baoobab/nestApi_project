@@ -8,6 +8,7 @@ import { UserRoles } from "../roles/user-roles.model";
 import { RolesModule } from "../roles/roles.module";
 import { ReferralsModule } from "../referrals/referrals.module";
 import { AuthModule } from "../auth/auth.module";
+import { BanListModule } from "../ban_list/ban_list.module";
 
 @Module({
   controllers: [UsersController],
@@ -16,6 +17,7 @@ import { AuthModule } from "../auth/auth.module";
       SequelizeModule.forFeature([User, Role, UserRoles]),
     RolesModule, // импортируем модули, функционал которых используем
     ReferralsModule,
+    BanListModule,
     forwardRef(() => AuthModule)
   ],
   exports: [UsersService]

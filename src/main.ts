@@ -1,4 +1,4 @@
-import {NestFactory} from "@nestjs/core";
+import { NestFactory } from "@nestjs/core";
 import {AppModule} from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
@@ -14,7 +14,7 @@ async function start() {
       .build()
     const document = SwaggerModule.createDocument(app, config)
     SwaggerModule.setup('/api/docs', app, document) // документация методов
-
+    // app.useGlobalGuards() // если нужно ограничить доступ для всего приложения
     await app.listen(PORT, () => console.log(`SERVER STARTED ON PORT: ${PORT}`))
 }
 

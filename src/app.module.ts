@@ -11,11 +11,16 @@ import { RolesModule } from './roles/roles.module';
 import { Role } from "./roles/roles.model";
 import { UserRoles } from "./roles/user-roles.model";
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from "@nestjs/core";
+import { RolesGuard } from "./auth/roles.guard";
 
 
 @Module({
     controllers: [],
-    providers: [],
+    providers: [{
+        provide: APP_GUARD,
+        useClass: RolesGuard
+    }],
     imports: [
         ConfigModule.forRoot({
            envFilePath: `.${process.env.NODE_ENV}.env`
