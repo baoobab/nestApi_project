@@ -7,6 +7,10 @@ import { ReferralsModule } from './referrals/referrals.module';
 import {User} from "./users/users.model";
 import {Ban_listModel} from "./ban_list/ban_list.model";
 import {ReferralsModel} from "./referrals/referrals.model";
+import { RolesModule } from './roles/roles.module';
+import { Role } from "./roles/roles.model";
+import { UserRoles } from "./roles/user-roles.model";
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -23,12 +27,14 @@ import {ReferralsModel} from "./referrals/referrals.model";
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DB,
-            models: [User, Ban_listModel, ReferralsModel],
+            models: [User, Ban_listModel, ReferralsModel, Role, UserRoles],
             autoLoadModels: true
         }),
         UsersModule,
         BanListModule,
         ReferralsModule,
+        RolesModule,
+        AuthModule,
     ],
 
 })

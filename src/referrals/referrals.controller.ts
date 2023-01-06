@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { ReferralsService } from "./referrals.service";
 import { CreateReferralDto } from "./dto/create-referral.dto";
-import { Request} from "express";
 
 @Controller('referrals')
 export class ReferralsController {
@@ -16,13 +15,13 @@ export class ReferralsController {
   }
 
   @Get('/byp/:id')
-  getByParent(@Req() request: Request) {
-    return this.referralsService.getReferralByParent(Number(request.params.id) || null)
+  getByParent(@Param('id') id: number) {
+    return this.referralsService.getReferralByParent(id || null)
   }
 
   @Get('/byc/:id')
-  getByChild(@Req() request: Request) {
-    return this.referralsService.getReferralByChild(Number(request.params.id) || null)
+  getByChild(@Param('id') id: number) {
+    return this.referralsService.getReferralByChild(id || null)
   }
 
   @Get()

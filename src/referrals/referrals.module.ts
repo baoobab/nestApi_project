@@ -9,6 +9,7 @@ import {ReferralsModel} from "./referrals.model";
   providers: [ReferralsService],
   imports: [
     SequelizeModule.forFeature([ReferralsModel])
-  ]
+  ],
+  exports: [ReferralsService]
 })
 export class ReferralsModule {}
