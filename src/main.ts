@@ -15,7 +15,7 @@ async function start() {
       .addTag('baoobab')
       .build()
     const document = SwaggerModule.createDocument(app, config)
-    SwaggerModule.setup('/api/docs', app, document) // документация методов
+    SwaggerModule.setup('/api/docs', app, document) // документация
     // app.useGlobalGuards() // если нужно ограничить доступ для всего приложения
     app.useGlobalPipes(new ValidationPipe())
     await app.listen(PORT, () => console.log(`SERVER STARTED ON PORT: ${PORT}`))
